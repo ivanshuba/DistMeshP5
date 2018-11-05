@@ -1,0 +1,7 @@
+pages:
+  stage: deploy
+  script:
+  - echo 'Copying files to public folder'
+  cp *.js ./public
+  cp -R libraries ./public
+  cp index.html ./public
