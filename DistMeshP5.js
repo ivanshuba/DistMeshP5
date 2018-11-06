@@ -28,7 +28,7 @@ function draw() {
 }
 
 function mousePressed() {
-  if (millis() - prevTime < 200) return;
+  if (millis() - prevTime < 300) return;
   prevTime = millis();
   pts.push(new TPoint(mouseX, mouseY));
   delaunay.triangulate(pts);

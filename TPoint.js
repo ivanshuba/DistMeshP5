@@ -1,6 +1,8 @@
 class TPoint {
   constructor(x, y) {
     this.position = createVector(x, y);
+    this.connectedPoints = [];
+    this.checkedPoints = [];
   }
 
   isInside(p1, p2, p3) {
@@ -10,13 +12,15 @@ class TPoint {
     return d < r;
     //return false;
   }
+  
+  draw() {
+    ellipseMode(CENTER);
+    fill(250);
+    strokeWeight(0.5);
+    ellipse(this.position.x, this.position.y, 5, 5);
+    fill(0);
+    textSize(8);
+    text(pts.indexOf(this), this.position.x, this.position.y - 10);
+  }
 }
 
-TPoint.prototype.draw = function() {
-  ellipseMode(CENTER);
-  fill(200);
-  ellipse(this.position.x, this.position.y, 5, 5);
-  fill(0);
-  textSize(8);
-  text(pts.indexOf(this), this.position.x, this.position.y - 10);
-}

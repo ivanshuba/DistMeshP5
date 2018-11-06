@@ -16,17 +16,36 @@ class Triangle {
    return createVector(Ux, Uy);
   }
 
+  draw () {
+    stroke(0);
+    strokeWeight(0.25);
+    line(this.p1.position.x, this.p1.position.y, this.p2.position.x, this.p2.position.y);
+    line(this.p2.position.x, this.p2.position.y, this.p3.position.x, this.p3.position.y);
+    line(this.p3.position.x, this.p3.position.y, this.p1.position.x, this.p1.position.y);
+  }
+  
+  contains(tp) {
+    return (tp === this.p1 || tp === this.p2 || tp === this.p3);
+  }
+
+  getNeighbours(tp) {
+    var neighbours = undefined;
+    if(tp === this.p1) {
+      neighbours = [];
+      neighbours.push(this.p2);
+      neighbours.push(this.p3);
+    }else if(tp === this.p2) {
+      neighbours = [];
+      neighbours.push(this.p1);
+      neighbours.push(this.p3);
+    }else if(tp === this.p3) {
+      neighbours = [];
+      neighbours.push(this.p1);
+      neighbours.push(this.p2);
+    }
+    return neighbours;
+  }
 }
 
-Triangle.prototype.draw = function() {
-  stroke(0);
-  strokeWeight(0.5);
-  line(this.p1.position.x, this.p1.position.y, this.p2.position.x, this.p2.position.y);
-  line(this.p2.position.x, this.p2.position.y, this.p3.position.x, this.p3.position.y);
-  line(this.p3.position.x, this.p3.position.y, this.p1.position.x, this.p1.position.y);
-}
 
-Triangle.prototype.contains = function(tp) {
-  return (tp === p1 || tp === p2 || tp === p3);
-}
 
