@@ -1,17 +1,22 @@
-var p1, p2, p3;
+var delaunay;
+var pts = [];
 
 function setup() {
   createCanvas(500, 500);
-  var x0 = width * 0.5;
-  var y0 = height * 0.5;
-  p1 = new TPoint(x0 - 40, y0 + 0);
-  p2 = new TPoint(x0 + 0, y0 + 40);
-  p3 = new TPoint(x0 + 40, y0 + 0);
-  t = new Triangle(p1, p2, p3);
+  delaunay = new Delaunay();
+  for (var i = 0; i<10; i++) {
+    pts.push(new TPoint(random(0, width), random(0, height)));
+  }
+  delaunay.triangulate(pts);
 }
 
 function draw() {
   background(230);
-  t.draw();
+  for (var i = 0; i<10; i++) {
+    pts[i].draw();
+  }
+  for (var i = 0; i<delaunay.triangles.length; i++) {
+    delaunay.triangles[i].draw();
+  }
 }
 
