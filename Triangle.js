@@ -6,13 +6,13 @@ class Triangle {
   }
 
   static getCenter(p1, p2, p3) {
-    var D = 2 * (p1.x*(p2.y-p3.y) + p2.x*(p3.y-p1.y) + p3.x*(p1.y-p2.y))
-    var Ux = ( (p1.x**2 + p1.y**2)*(p2.y - p3.y) + 
-               (p2.x**2 + p2.y**2)*(p3.y - p1.y) + 
-               (p3.x**2 + p3.y**2)*(p1.y - p2.y) ) / D
-    var Uy = ( (p1.x**2 + p1.y**2)*(p3.x - p2.x) + 
-               (p2.x**2 + p2.y**2)*(p1.x - p3.x) + 
-               (p3.x**2 + p3.y**2)*(p2.x - p1.x) ) / D  
+    var D = 2 * (p1.position.x*(p2.position.y-p3.position.y) + p2.position.x*(p3.position.y-p1.position.y) + p3.position.x*(p1.position.y-p2.position.y));
+    var Ux = ( (p1.position.x**2 + p1.position.y**2)*(p2.position.y - p3.position.y) + 
+               (p2.position.x**2 + p2.position.y**2)*(p3.position.y - p1.position.y) + 
+               (p3.position.x**2 + p3.position.y**2)*(p1.position.y - p2.position.y) ) / D;
+    var Uy = ( (p1.position.x**2 + p1.position.y**2)*(p3.position.x - p2.position.x) + 
+               (p2.position.x**2 + p2.position.y**2)*(p1.position.x - p3.position.x) + 
+               (p3.position.x**2 + p3.position.y**2)*(p2.position.x - p1.position.x) ) / D  ;
    return createVector(Ux, Uy);
   }
 

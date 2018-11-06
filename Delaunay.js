@@ -1,21 +1,20 @@
 class Delaunay {
   constructor(){
     this.edges = [];
-    this.points = [];
     this.triangles = [];
   }
 }
 
 Delaunay.prototype.triangulate = function(points) {
-  this.points = points;
-  this.edges = [];
+  //this.points = points;
   this.triangles = [];
 
-  for (var i = 0; i < points.length; i++) {
-    for (var j = i + 1; j < points.length; j++) {
-      for (var k = j + 1; k < points.length; k++) {
+  var N = pts.length;
+  for (var i = 0; i < N; i++) {
+    for (var j = i+1; j < N; j++) {
+      for (var k = j+1; k < N; k++) {
         var isTriangle = true;
-        for (var a = 0; a < points.length; a++) {
+        for (var a = 0; a < N; a++) {
           if (a == i || a == j || a == k) continue;
           if (points[a].isInside(points[i], points[j], points[k])) {
             isTriangle = false;
