@@ -22,10 +22,12 @@ class Triangle {
     line(this.p1.position.x, this.p1.position.y, this.p2.position.x, this.p2.position.y);
     line(this.p2.position.x, this.p2.position.y, this.p3.position.x, this.p3.position.y);
     line(this.p3.position.x, this.p3.position.y, this.p1.position.x, this.p1.position.y);
-    var x = (this.p1.position.x + this.p2.position.x + this.p3.position.x) / 3;
-    var y = (this.p1.position.y + this.p2.position.y + this.p3.position.y) / 3;
-    fill(0);
-    text(delaunay.triangles.indexOf(this), x, y);
+    if (delaunay.drawText) {
+      var x = (this.p1.position.x + this.p2.position.x + this.p3.position.x) / 3;
+      var y = (this.p1.position.y + this.p2.position.y + this.p3.position.y) / 3;
+      fill(0);
+      text(delaunay.triangles.indexOf(this), x, y);
+    }
   }
   
   contains(tp) {

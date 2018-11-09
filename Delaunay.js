@@ -3,6 +3,7 @@ class Delaunay {
     this.edges = [];
     this.points = []
     this.triangles = [];
+    this.drawText = true;
   }
   
   draw() {
@@ -41,7 +42,7 @@ class Delaunay {
 
     this.clearConnectedPoints();
     this.updateConnectedPoints();
-    //this.updateEdgeList();
+    this.updateEdgeList();
   }
 
   clearConnectedPoints() {

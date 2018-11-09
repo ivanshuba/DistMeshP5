@@ -27,11 +27,17 @@ function draw() {
 
 function mousePressed() {
   if (mouseButton == LEFT) {
-    if (millis() - prevTime < 300) return;
-    prevTime = millis();
-    pts.push(new TPoint(mouseX, mouseY));
-    delaunay.triangulate(pts);
+    if (insideScreen(mouseX, mouseY)) {
+      if (millis() - prevTime < 300) return;
+      prevTime = millis();
+      pts.push(new TPoint(mouseX, mouseY));
+      delaunay.triangulate(pts);
+    }
   }
+}
+
+function insideScreen(x, y) {
+  return (x > 0 && x < width && y > 0 && y < height);
 }
 
 function prefill() {
