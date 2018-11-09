@@ -5,6 +5,18 @@ class Delaunay {
     this.triangles = [];
   }
   
+  draw() {
+    for (var i = 0; i < this.points.length; i++) {
+      this.points[i].draw();
+    }
+    for (var i = 0; i < this.edges.length; i++) {
+      this.edges[i].draw();
+    }
+    for (var i = 0; i < this.triangles.length; i++) {
+      this.triangles[i].draw();
+    }
+  }
+
   triangulate(points) {
     this.points = points;
     this.triangles = [];

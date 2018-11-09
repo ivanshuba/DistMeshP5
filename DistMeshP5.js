@@ -16,12 +16,8 @@ function draw() {
   textAlign(CENTER, CENTER);
   text("Click left mouse button on canvas", width * 0.5, 20);
 
-  for (var i = 0; i < pts.length; i++) {
-    pts[i].draw();
-  }
-  for (var i = 0; i < delaunay.triangles.length; i++) {
-    delaunay.triangles[i].draw();
-  }
+  delaunay.draw();
+
   fill(0);
   textSize(14);
   textAlign(LEFT, CENTER);
