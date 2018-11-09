@@ -1,6 +1,7 @@
 class Delaunay {
   constructor(){
     this.edges = [];
+    this.points = []
     this.triangles = [];
   }
   
@@ -28,13 +29,14 @@ class Delaunay {
 
     this.clearConnectedPoints();
     this.updateConnectedPoints();
-    this.updateEdgeList();
+    //this.updateEdgeList();
   }
 
   clearConnectedPoints() {
+    print("Clearing points...");
     for (var i = 0; i < this.points.length; i++) {
       this.points[i].checkedPoints = [];
-      this.points[i].connnectedPoints = [];
+      this.points[i].connectedPoints = [];
     }
   }
 
@@ -46,7 +48,9 @@ class Delaunay {
         if (triangle.contains(point)) {
           var neighbours = triangle.getNeighbours(point);
           for (var k = 0; k < neighbours.length; k++) {
-            point.connectedPoints.push(neighbours[k]);
+            if (!point.connectedPoints.includes(neighbours[k])) {
+              point.connectedPoints.push(neighbours[k]);
+            }
           }
         }
       }

@@ -45,6 +45,10 @@ class Triangle {
     }
     return neighbours;
   }
+
+  toString() {
+    print('[' + pts.indexOf(this.p1) + ',' + pts.indexOf(this.p2) + ',' + pts.indexOf(this.p3) + ']');
+  }
 }
 
 

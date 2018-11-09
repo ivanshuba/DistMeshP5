@@ -19,8 +19,13 @@ class TPoint {
     strokeWeight(0.5);
     ellipse(this.position.x, this.position.y, 5, 5);
     fill(0);
-    textSize(8);
-    text(pts.indexOf(this), this.position.x, this.position.y - 10);
+    textSize(12);
+    var label = ', c[(' + this.connectedPoints.length + '):';
+    for (var i = 0; i < this.connectedPoints.length - 1; i++) {
+      label += pts.indexOf(this.connectedPoints[i]) + ',';
+    }
+    label += pts.indexOf(this.connectedPoints[this.connectedPoints.length-1]) + ']';
+    text(pts.indexOf(this) + label, this.position.x, this.position.y - 10);
   }
 }
 
