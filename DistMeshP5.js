@@ -1,6 +1,6 @@
-var prevTime;
 var pts = [];
 var delaunay;
+var prevTime;
 
 function setup() {
   createCanvas(600, 400);
@@ -15,24 +15,45 @@ function draw() {
   textSize(20);
   textAlign(CENTER, CENTER);
   text("Click left mouse button on canvas", width * 0.5, 20);
+  text("Pres 't' for label drawing", width * 0.5, 40);
 
   delaunay.draw();
 
   fill(0);
-  textSize(14);
+  textSize(12);
   textAlign(LEFT, CENTER);
-  text("pts.length:" + pts.length, 10, 10);
-  text("triangles.length:" + delaunay.triangles.length, 10, 30);
+  text("points:" + delaunay.points.length, 10, 15);
+  text("edges:" + delaunay.edges.length, 10, 30);
+  text("triangles:" + delaunay.triangles.length, 10, 45);
+
+  if (keyIsPressed) {
+    if (key == 't') {
+      if (millis() - prevTime > 200) {
+        print("Ok");
+        delaunay.drawText = !delaunay.drawText;
+        prevTime = millis();
+      }
+    }
+  }
+
 }
 
 function mousePressed() {
   if (mouseButton == LEFT) {
     if (insideScreen(mouseX, mouseY)) {
-      if (millis() - prevTime < 300) return;
-      prevTime = millis();
-      pts.push(new TPoint(mouseX, mouseY));
-      delaunay.triangulate(pts);
+      if (millis() - prevTime > 300) {
+        prevTime = millis();
+        pts.push(new TPoint(mouseX, mouseY));
+        delaunay.triangulate(pts);
+      }
     }
+  }
+}
+
+function keyPressed() {
+  if (key == 't') {
+    print("Ok");
+    delaunay.drawText = !delaunay.drawText;
   }
 }
 

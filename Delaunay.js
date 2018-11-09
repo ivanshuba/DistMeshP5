@@ -3,7 +3,7 @@ class Delaunay {
     this.edges = [];
     this.points = []
     this.triangles = [];
-    this.drawText = true;
+    this.drawText = false;
   }
   
   draw() {
