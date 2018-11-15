@@ -1,5 +1,5 @@
 # DistMeshP5
-===
+---
 
 This is an implementation of a DistMesh algorithm. [Here](https://popersson.github.io/distmesh/) you can find more information about it.
 
