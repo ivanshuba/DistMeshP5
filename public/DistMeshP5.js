@@ -38,7 +38,10 @@ function mousePressed() {
       if (insideScreen(mouseX, mouseY)) {
         if (millis() - prevTime > 300) {
           prevTime = millis();
-          pts.push(new TPoint(mouseX, mouseY));
+          let pt = new TPoint(mouseX, mouseY);
+          pt.isHovered = true;
+          hoveredPt = pt;
+          pts.push(pt);
           delaunay.triangulate(pts);
         }
       }
@@ -76,6 +79,7 @@ function mouseDragged() {
   if (hoveredPt != null) {
     hoveredPt.position.x = mouseX;
     hoveredPt.position.y = mouseY;
+    delaunay.triangulate(pts);
   }
 }
 
