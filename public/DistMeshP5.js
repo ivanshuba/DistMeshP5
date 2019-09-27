@@ -2,6 +2,7 @@ var pts = [];
 var delaunay;
 var prevTime;
 let mousePos = [];
+let hoveredPt = null;
 
 function setup() {
   createCanvas(600, 400);
@@ -27,26 +28,19 @@ function draw() {
   text("edges:" + delaunay.edges.length, 10, 30);
   text("triangles:" + delaunay.triangles.length, 10, 45);
   text("mousePos:" + mousePos[0] + ":" + mousePos[1], 10, 60);
-
-  if (keyIsPressed) {
-    if (key == 't') {
-      if (millis() - prevTime > 200) {
-        print("Ok");
-        delaunay.drawText = !delaunay.drawText;
-        prevTime = millis();
-      }
-    }
-  }
-
+  text("pt:" + delaunay.points[0].position.x + ":" + delaunay.points[0].position.y, 10, 75);
+  text("hoveredPt:" + hoveredPt, 10, 90);
 }
 
 function mousePressed() {
   if (mouseButton == LEFT) {
-    if (insideScreen(mouseX, mouseY)) {
-      if (millis() - prevTime > 300) {
-        prevTime = millis();
-        pts.push(new TPoint(mouseX, mouseY));
-        delaunay.triangulate(pts);
+    if (hoveredPt == null) {
+      if (insideScreen(mouseX, mouseY)) {
+        if (millis() - prevTime > 300) {
+          prevTime = millis();
+          pts.push(new TPoint(mouseX, mouseY));
+          delaunay.triangulate(pts);
+        }
       }
     }
   }
@@ -60,8 +54,29 @@ function keyPressed() {
 }
 
 function mouseMoved() {
+  let range = 10;
+  hoveredPt = null;
   mousePos[0] = mouseX;
   mousePos[1] = mouseY;
+  for (var i = 0; i < delaunay.points.length; i++) {
+    let pt = delaunay.points[i];
+    let ptPos = pt.position;
+    if (mouseX > ptPos.x - range && mouseX < ptPos.x + range &&
+      mouseY > ptPos.y - range && mouseY < ptPos.y + range) {
+      pt.isHovered = true;
+      hoveredPt = pt;
+    } else {
+      pt.isHovered = false;
+    }
+  }
+  //hoveredPt = hovered;
+}
+
+function mouseDragged() {
+  if (hoveredPt != null) {
+    hoveredPt.position.x = mouseX;
+    hoveredPt.position.y = mouseY;
+  }
 }
 
 function insideScreen(x, y) {

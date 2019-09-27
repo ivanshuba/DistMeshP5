@@ -3,6 +3,7 @@ class TPoint {
     this.position = createVector(x, y);
     this.connectedPoints = [];
     this.checkedPoints = [];
+    this.isHovered = false;
   }
 
   isInside(p1, p2, p3) {
@@ -11,7 +12,7 @@ class TPoint {
     var r = p5.Vector.dist(center, p1.position);
     return d < r;
   }
-  
+
   draw() {
     ellipseMode(CENTER);
     fill(250);
@@ -24,8 +25,15 @@ class TPoint {
       for (var i = 0; i < this.connectedPoints.length - 1; i++) {
         label += pts.indexOf(this.connectedPoints[i]) + ',';
       }
-      label += pts.indexOf(this.connectedPoints[this.connectedPoints.length-1]) + ']';
+      label += pts.indexOf(this.connectedPoints[this.connectedPoints.length - 1]) + ']';
       text(pts.indexOf(this) + label, this.position.x, this.position.y - 10);
+    }
+    if (this.isHovered) {
+      noFill();
+      stroke(150);
+      strokeWeight(2);
+      rectMode(CENTER);
+      rect(this.position.x, this.position.y, 15, 15);
     }
   }
 }
