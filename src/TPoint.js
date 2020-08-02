@@ -14,6 +14,7 @@ class TPoint {
   }
 
   draw() {
+    push();
     ellipseMode(CENTER);
     fill(250);
     strokeWeight(0.5);
@@ -21,7 +22,7 @@ class TPoint {
     fill(0);
     textSize(12);
     if (delaunay.drawText) {
-      var label = ', c[(' + this.connectedPoints.length + '):';
+      var label = ', c [(' + this.connectedPoints.length + '):';
       for (var i = 0; i < this.connectedPoints.length - 1; i++) {
         label += pts.indexOf(this.connectedPoints[i]) + ',';
       }
@@ -35,6 +36,7 @@ class TPoint {
       rectMode(CENTER);
       rect(this.position.x, this.position.y, 15, 15);
     }
+    pop();
   }
 }
 

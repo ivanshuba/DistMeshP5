@@ -8,8 +8,7 @@ function setup() {
   createCanvas(600, 400);
   delaunay = new Delaunay();
   prevTime = millis();
-
-  prefill();
+  prefillTriangulation();
 }
 
 function draw() {
@@ -30,6 +29,8 @@ function draw() {
   text("mousePos:" + mousePos[0] + ":" + mousePos[1], 10, 60);
   text("pt:" + delaunay.points[0].position.x + ":" + delaunay.points[0].position.y, 10, 75);
   text("hoveredPt:" + hoveredPt, 10, 90);
+
+  checkPressedKey();
 }
 
 function mousePressed() {
@@ -49,10 +50,15 @@ function mousePressed() {
   }
 }
 
-function keyPressed() {
-  if (key == 't') {
-    print("Ok");
-    delaunay.drawText = !delaunay.drawText;
+function checkPressedKey() {
+  if (keyIsPressed) {
+    if (key == 't') {
+      if (millis() - prevTime > 200) {
+        print("Ok");
+        delaunay.drawText = !delaunay.drawText;
+        prevTime = millis();
+      }
+    }
   }
 }
 
@@ -87,7 +93,7 @@ function insideScreen(x, y) {
   return (x > 0 && x < width && y > 0 && y < height);
 }
 
-function prefill() {
+function prefillTriangulation() {
   pts.push(new TPoint(width * 0.5 - 150, height * 0.5));
   pts.push(new TPoint(width * 0.5, height * 0.5 + 150));
   pts.push(new TPoint(width * 0.5 + 150, height * 0.5));

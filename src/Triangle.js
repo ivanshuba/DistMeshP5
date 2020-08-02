@@ -25,7 +25,8 @@ class Triangle {
     if (delaunay.drawText) {
       var x = (this.p1.position.x + this.p2.position.x + this.p3.position.x) / 3;
       var y = (this.p1.position.y + this.p2.position.y + this.p3.position.y) / 3;
-      fill(0);
+      fill(200, 100, 0);
+      textSize(16);
       text(delaunay.triangles.indexOf(this), x, y);
     }
   }
