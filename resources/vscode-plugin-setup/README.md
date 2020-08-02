@@ -1,2 +1,0 @@
-This is an example `.vscode` folder that is needed for proper functioning of the VSCode Processing plugin.
-See the [author's repository](https://github.com/TobiahZ/processing-vscode) for more information.
