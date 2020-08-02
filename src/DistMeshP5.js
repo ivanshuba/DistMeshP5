@@ -16,7 +16,7 @@ function draw() {
   textSize(20);
   textAlign(CENTER, CENTER);
   text("Click left mouse button on canvas", width * 0.5, 20);
-  text("Pres 't' for label drawing", width * 0.5, 40);
+  text("Pres 't' to show/hide labels", width * 0.5, 40);
 
   delaunay.draw();
 
