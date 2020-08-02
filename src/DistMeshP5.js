@@ -15,8 +15,8 @@ function draw() {
   background(250);
   textSize(20);
   textAlign(CENTER, CENTER);
-  text("Click left mouse button on canvas", width * 0.5, 20);
-  text("Pres 't' to show/hide labels", width * 0.5, 40);
+  text("Click left mouse button on canvas to add more points", width * 0.5, 20);
+  text("Press 't' to show/hide labels", width * 0.5, 40);
 
   delaunay.draw();
 
