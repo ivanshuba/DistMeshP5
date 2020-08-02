@@ -13,7 +13,7 @@ function setup() {
 }
 
 function draw() {
-  background(230);
+  background(250);
   textSize(20);
   textAlign(CENTER, CENTER);
   text("Click left mouse button on canvas", width * 0.5, 20);
